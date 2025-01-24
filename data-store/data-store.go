@@ -58,7 +58,7 @@ func DeleteTodo(id int) {
 	}
 }
 
-func MarkCompleted(id int) {
+func MarkTodoCompleted(id int) {
 	if id >= 1 && id <= len(Todos) {
 		Todos[id-1].Completed = true
 		fmt.Println("Todo marked as completed")

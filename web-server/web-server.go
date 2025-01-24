@@ -49,6 +49,24 @@ func main() {
 		datastore.UpdateTodo(id, newTodo.Item)
 	})
 
+	router.HandleFunc("DELETE /todos/{id}", func(w http.ResponseWriter, r *http.Request) {
+		id, err := strconv.Atoi(r.PathValue("id"))
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+		}
+
+		datastore.DeleteTodo(id)
+	})
+
+	router.HandleFunc("PATCH /todos/{id}/mark-completed", func(w http.ResponseWriter, r *http.Request) {
+		id, err := strconv.Atoi(r.PathValue("id"))
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+		}
+
+		datastore.MarkTodoCompleted(id)
+	})
+
 	if err := http.ListenAndServe(":8080", router); err != nil {
 		fmt.Println(err)
 	}

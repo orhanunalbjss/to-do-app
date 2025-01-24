@@ -56,7 +56,7 @@ func main() {
 			fmt.Print("Enter id: ")
 			scanner.Scan()
 			id, _ = strconv.Atoi(scanner.Text())
-			datastore.MarkCompleted(id)
+			datastore.MarkTodoCompleted(id)
 		case 6:
 			os.Exit(0)
 		default:
